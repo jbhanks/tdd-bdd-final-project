@@ -72,7 +72,7 @@ class TestProductModel(unittest.TestCase):
 
     def test_create_a_product(self):
         """It should Create a product and assert that it exists"""
-        product = Product(name="trebuchet", description="A trebuchet to throw big rocks", price=12.50, available=True, category=Category.CLOTHS)
+        product = Product(name="trebuchet", description="A trebuchet to throw big rocks", price=12.50, available=True, category=Category.SIEGE_ENGINE)
         self.assertEqual(str(product), "<Product trebuchet id=[None]>")
         self.assertTrue(product is not None)
         self.assertEqual(product.id, None)

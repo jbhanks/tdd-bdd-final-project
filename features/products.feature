@@ -5,11 +5,18 @@ Feature: The product store service back-end
 
 Background:
     Given the following products
-        | name       | description     | price   | available | category   |
-        | Hat        | A red fedora    | 59.95   | True      | CLOTHS     |
-        | Shoes      | Blue shoes      | 120.50  | False     | CLOTHS     |
-        | Big Mac    | 1/4 lb burger   | 5.99    | True      | FOOD       |
-        | Sheets     | Full bed sheets | 87.00   | True      | HOUSEWARES |
+        |trebuchet |  A trebuchet to throw big rocks       | price   | available | categor
+        |siege tower | A for the tallest walls    | 999.99   |  False      | SIEGE_ENGINES
+        |ballista     | Goes through walls like a hot knife through butter!      | 999.99 
+        |sword   | Finest Damascus steel   | 99.99    | True      | SIDEARM       |
+        |mace | Simple yet effective | 9.99   | True      | SIDEARM |
+        | plate armor |Our finest | 99.99 | True | BODY_PROTECTION  |
+        | chain mail | For the fighter on the go |59.99 | True | BODY_PROTECTION    |
+        | pitch | Just boil and pour | 2.99 | True | FLAMMABLES  |
+        | Greek fire | Only with written permission from the Basileus | 19.99 |  FLAMMABLE
+        | brimstone | Buy with our pitch |  5.99 | True | FLAMMABLES |
+        | royal banner | Reprazent for your Basileus | 10.99 | True | SWAG     |
+        | riding boots| Like the ones the steppe archers use | 2.99 | False |  SWAG  |
 
 Scenario: The server is running
     When I visit the "Home Page"
