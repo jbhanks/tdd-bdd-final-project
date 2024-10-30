@@ -72,15 +72,15 @@ class TestProductModel(unittest.TestCase):
 
     def test_create_a_product(self):
         """It should Create a product and assert that it exists"""
-        product = Product(name="Fedora", description="A red hat", price=12.50, available=True, category=Category.CLOTHS)
-        self.assertEqual(str(product), "<Product Fedora id=[None]>")
+        product = Product(name="trebuchet", description="A trebuchet to throw big rocks", price=12.50, available=True, category=Category.CLOTHS)
+        self.assertEqual(str(product), "<Product trebuchet id=[None]>")
         self.assertTrue(product is not None)
         self.assertEqual(product.id, None)
-        self.assertEqual(product.name, "Fedora")
-        self.assertEqual(product.description, "A red hat")
+        self.assertEqual(product.name, "trebuchet")
+        self.assertEqual(product.description, "A trebuchet to throw big rocks")
         self.assertEqual(product.available, True)
         self.assertEqual(product.price, 12.50)
-        self.assertEqual(product.category, Category.CLOTHS)
+        self.assertEqual(product.category, Category.SIEGE_ENGINE)
 
     def test_add_a_product(self):
         """It should Create a product and add it to the database"""
@@ -104,3 +104,5 @@ class TestProductModel(unittest.TestCase):
     #
     # ADD YOUR TEST CASES HERE
     #
+    def test_read_a_product(self):
+        """It should read a product from the database"""

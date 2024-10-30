@@ -53,11 +53,11 @@ class Category(Enum):
     """Enumeration of valid Product Categories"""
 
     UNKNOWN = 0
-    CLOTHS = 1
-    FOOD = 2
-    HOUSEWARES = 3
-    AUTOMOTIVE = 4
-    TOOLS = 5
+    SIEGE_ENGINE = 1
+    SIDEARM = 2
+    BODY_PROTECTION = 3
+    FLAMMABLES = 4
+    SWAG = 5
 
 
 class Product(db.Model):
