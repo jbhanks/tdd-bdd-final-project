@@ -6,7 +6,7 @@ Feature: The product store service back-end
 Background:
     Given the following products
         |trebuchet |  A trebuchet to throw big rocks       | price   | available | categor
-        |siege tower | A for the tallest walls    | 999.99   |  False      | SIEGE_ENGINES
+        |siege tower | For the tallest walls. Assembly required.    | 999.99   |  False      | SIEGE_ENGINES
         |ballista     | Goes through walls like a hot knife through butter!      | 999.99 
         |sword   | Finest Damascus steel   | 99.99    | True      | SIDEARM       |
         |mace | Simple yet effective | 9.99   | True      | SIDEARM |
@@ -25,11 +25,11 @@ Scenario: The server is running
 
 Scenario: Create a Product
     When I visit the "Home Page"
-    And I set the "Name" to "Hammer"
-    And I set the "Description" to "Claw hammer"
+    And I set the "Name" to "sword"
+    And I set the "Description" to "Damascus steel"
     And I select "True" in the "Available" dropdown
-    And I select "Tools" in the "Category" dropdown
-    And I set the "Price" to "34.95"
+    And I select "Sidearms" in the "Category" dropdown
+    And I set the "Price" to "99.99"
     And I press the "Create" button
     Then I should see the message "Success"
     When I copy the "Id" field
@@ -40,8 +40,8 @@ Scenario: Create a Product
     When I paste the "Id" field
     And I press the "Retrieve" button
     Then I should see the message "Success"
-    And I should see "Hammer" in the "Name" field
-    And I should see "Claw hammer" in the "Description" field
+    And I should see "sword" in the "Name" field
+    And I should see "Finest Damascus steel" in the "Description" field
     And I should see "True" in the "Available" dropdown
-    And I should see "Tools" in the "Category" dropdown
-    And I should see "34.95" in the "Price" field
+    And I should see "Sidearms" in the "Category" dropdown
+    And I should see "99.99" in the "Price" field

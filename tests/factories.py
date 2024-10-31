@@ -34,14 +34,14 @@ class ProductFactory(factory.Factory):
         choices = [
             'trebuchet',
             'siege tower',
-            'ballista'
+            'ballista',
             'sword',
             'mace',
-            'plate armor'
+            'plate armor',
             'chain mail',
-            'pitch (1 barrel)',
+            'pitch',
             'Greek fire',
-            'brimstone (1 barrel)',
+            'brimstone',
             'royal banner',
             'riding boots'
             ])
