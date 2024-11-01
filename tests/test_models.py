@@ -107,10 +107,57 @@ class TestProductModel(unittest.TestCase):
     def test_read_a_product(self):
         """It should read a product from the database"""
         products = Product.all()
-        print(products)
         self.assertEqual(products, [])
         product = ProductFactory()
-        product.id = None
         product.create()
-        product = Product.find(product.id)
-        print(product)
+        fetched = Product.find(product.id)
+        # Check that it matches the original product
+        self.assertEqual(fetched.id, product.id)
+        self.assertEqual(fetched.name, product.name)
+        self.assertEqual(fetched.description, product.description)
+        self.assertEqual(Decimal(fetched.price), product.price)
+        self.assertEqual(fetched.available, product.available)
+        self.assertEqual(fetched.category, product.category)
+
+    def test_uodate_a_product(self):
+        """It should update a product already in the database"""
+        products = Product.all()
+        self.assertEqual(products, [])
+        product = ProductFactory()
+        product.create()
+        fetched = Product.find(product.id)
+        # Check that it matches the original product
+        self.assertEqual(fetched.id, product.id)
+        self.assertEqual(fetched.name, product.name)
+        self.assertEqual(fetched.description, product.description)
+        self.assertEqual(Decimal(fetched.price), product.price)
+        self.assertEqual(fetched.available, product.available)
+        self.assertEqual(fetched.category, product.category)
+        product.name = "Test product"
+        product.update()
+        fetched = Product.find(product.id)
+        self.assertEqual(fetched.id, product.id)
+        self.assertEqual(fetched.name, "Test product")
+        self.assertEqual(fetched.description, product.description)
+        self.assertEqual(Decimal(fetched.price), product.price)
+        self.assertEqual(fetched.available, product.available)
+        self.assertEqual(fetched.category, product.category)
+
+
+    def test_delete_a_product(self):
+        """It should delete a product from the database"""
+        products = Product.all()
+        self.assertEqual(products, [])
+        product = ProductFactory()
+        product.create()
+        fetched = Product.find(product.id)
+        # Check that it matches the original product
+        self.assertEqual(fetched.id, product.id)
+        self.assertEqual(fetched.name, product.name)
+        self.assertEqual(fetched.description, product.description)
+        self.assertEqual(Decimal(fetched.price), product.price)
+        self.assertEqual(fetched.available, product.available)
+        self.assertEqual(fetched.category, product.category)
+        product.delete()
+        fetched = Product.find(product.id)
+        self.assertEqual(fetched, None)
