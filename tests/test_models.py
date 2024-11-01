@@ -109,8 +109,10 @@ class TestProductModel(unittest.TestCase):
         products = Product.all()
         self.assertEqual(products, [])
         product = ProductFactory()
+        product.id = None
         product.create()
         fetched = Product.find(product.id)
+        self.assertNotEqual(fetched.id, None)
         # Check that it matches the original product
         self.assertEqual(fetched.id, product.id)
         self.assertEqual(fetched.name, product.name)
@@ -119,12 +121,14 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(fetched.available, product.available)
         self.assertEqual(fetched.category, product.category)
 
-    def test_uodate_a_product(self):
+    def test_update_a_product(self):
         """It should update a product already in the database"""
         products = Product.all()
         self.assertEqual(products, [])
         product = ProductFactory()
+        product.id = None
         product.create()
+        self.assertNotEqual(product.id, None)
         fetched = Product.find(product.id)
         # Check that it matches the original product
         self.assertEqual(fetched.id, product.id)
@@ -133,12 +137,12 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(Decimal(fetched.price), product.price)
         self.assertEqual(fetched.available, product.available)
         self.assertEqual(fetched.category, product.category)
-        product.name = "Test product"
+        product.description = "A test product description"
         product.update()
         fetched = Product.find(product.id)
         self.assertEqual(fetched.id, product.id)
-        self.assertEqual(fetched.name, "Test product")
-        self.assertEqual(fetched.description, product.description)
+        self.assertEqual(fetched.name, product.name)
+        self.assertEqual(fetched.description, "A test product description")
         self.assertEqual(Decimal(fetched.price), product.price)
         self.assertEqual(fetched.available, product.available)
         self.assertEqual(fetched.category, product.category)
@@ -150,14 +154,20 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(products, [])
         product = ProductFactory()
         product.create()
+        self.assertEqual(len(Product.all()), 1)
         fetched = Product.find(product.id)
-        # Check that it matches the original product
-        self.assertEqual(fetched.id, product.id)
-        self.assertEqual(fetched.name, product.name)
-        self.assertEqual(fetched.description, product.description)
-        self.assertEqual(Decimal(fetched.price), product.price)
-        self.assertEqual(fetched.available, product.available)
-        self.assertEqual(fetched.category, product.category)
         product.delete()
+        self.assertEqual(len(Product.all()), 0)
         fetched = Product.find(product.id)
         self.assertEqual(fetched, None)
+
+
+    def test_list_all_products(self):
+        """It should list all products in the database"""
+        products = Product.all()
+        self.assertEqual(products, [])
+        for i in range(0, 5):
+            product = ProductFactory()
+            product.create()
+        products = Product.all()
+        self.assertEqual(len(products), 5)
