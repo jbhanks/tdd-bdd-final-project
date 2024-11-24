@@ -110,7 +110,7 @@ def create_products():
 # PLACE YOUR CODE HERE TO READ A PRODUCT
 #
 @app.route("/products/<int:product_id>", methods=["GET"])
-def get_one_product(product_id):
+def get_products(product_id):
     """Gets a single product by id"""
     app.logger.info("Request to Retrieve a product with id [%s]", product_id)
     product = Product.find(product_id)

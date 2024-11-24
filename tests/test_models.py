@@ -127,30 +127,23 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(fetched.category, product.category)
 
     def test_update_a_product(self):
-        """It should update a product already in the database"""
-        products = Product.all()
-        self.assertEqual(products, [])
+        """It should Update a Product"""
         product = ProductFactory()
         product.id = None
         product.create()
-        self.assertNotEqual(product.id, None)
-        fetched = Product.find(product.id)
-        # Check that it matches the original product
-        self.assertEqual(fetched.id, product.id)
-        self.assertEqual(fetched.name, product.name)
-        self.assertEqual(fetched.description, product.description)
-        self.assertEqual(Decimal(fetched.price), product.price)
-        self.assertEqual(fetched.available, product.available)
-        self.assertEqual(fetched.category, product.category)
-        product.description = "A test product description"
+        self.assertIsNotNone(product.id)
+        # Change it an save it
+        product.description = "testing"
+        original_id = product.id
         product.update()
-        fetched = Product.find(product.id)
-        self.assertEqual(fetched.id, product.id)
-        self.assertEqual(fetched.name, product.name)
-        self.assertEqual(fetched.description, "A test product description")
-        self.assertEqual(Decimal(fetched.price), product.price)
-        self.assertEqual(fetched.available, product.available)
-        self.assertEqual(fetched.category, product.category)
+        self.assertEqual(product.id, original_id)
+        self.assertEqual(product.description, "testing")
+        # Fetch it back and make sure the id hasn't changed
+        # but the data did change
+        products = Product.all()
+        self.assertEqual(len(products), 1)
+        self.assertEqual(products[0].id, original_id)
+        self.assertEqual(products[0].description, "testing")
 
     def test_delete_a_product(self):
         """It should delete a product from the database"""
@@ -189,7 +182,7 @@ class TestProductModel(unittest.TestCase):
                 ])
             found = Product.find_by_name(name)
             self.assertEqual(found.count(), count)
-            self.assertEqual(products.name, name)
+            self.assertEqual(product.name, name)
 
     def test_find_product_by_availability(self):
         """It should find products using the availability attribute"""
@@ -204,3 +197,27 @@ class TestProductModel(unittest.TestCase):
             self.assertEqual(item.available, True)
         for item in unavailable:
             self.assertEqual(item.available, False)
+
+    def test_find_by_availability(self):
+        """It should Find Products by availability"""
+        products = ProductFactory.create_batch(10)
+        for product in products:
+            product.create()
+        available = products[0].available
+        count = len([product for product in products if product.available == available])
+        found = Product.find_by_availability(available)
+        self.assertEqual(found.count(), count)
+        for product in found:
+            self.assertEqual(product.available, available)
+
+    def test_find_by_category(self):
+        """It should Find Products by category"""
+        products = ProductFactory.create_batch(10)
+        for product in products:
+            product.create()
+        category = products[0].category
+        count = len([product for product in products if product.category == category])
+        found = Product.find_by_category(category)
+        self.assertEqual(found.count(), count)
+        for product in found:
+            self.assertEqual(product.category, category)
