@@ -77,7 +77,9 @@ class Product(db.Model):
     price = db.Column(db.Numeric, nullable=False)
     available = db.Column(db.Boolean(), nullable=False, default=True)
     category = db.Column(
-        db.Enum(Category), nullable=False, server_default=(Category.UNKNOWN.name)
+        db.Enum(Category),
+        nullable=False,
+        server_default=(Category.UNKNOWN.name)
     )
 
     ##################################################
@@ -154,14 +156,12 @@ class Product(db.Model):
     ##################################################
     # CLASS METHODS
     ##################################################
-
     @classmethod
     def init_db(cls, app: Flask):
-        """Initializes the database session
-
+        """
+        Initializes the database session
         :param app: the Flask app
         :type data: Flask
-
         """
         logger.info("Initializing database")
         # This is where we initialize SQLAlchemy from the Flask app
