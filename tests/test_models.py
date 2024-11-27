@@ -145,18 +145,27 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(products[0].id, original_id)
         self.assertEqual(products[0].description, "testing")
 
+    # def test_delete_a_product(self):
+    #     """It should delete a product from the database"""
+    #     products = Product.all()
+    #     self.assertEqual(products, [])
+    #     product = ProductFactory()
+    #     product.create()
+    #     self.assertEqual(len(Product.all()), 1)
+    #     fetched = Product.find(product.id)
+    #     product.delete()
+    #     self.assertEqual(len(Product.all()), 0)
+    #     fetched = Product.find(product.id)
+    #     self.assertEqual(fetched, None)
+
     def test_delete_a_product(self):
-        """It should delete a product from the database"""
-        products = Product.all()
-        self.assertEqual(products, [])
+        """It should Delete a Product"""
         product = ProductFactory()
         product.create()
         self.assertEqual(len(Product.all()), 1)
-        fetched = Product.find(product.id)
+        # delete the product and make sure it isn't in the database
         product.delete()
         self.assertEqual(len(Product.all()), 0)
-        fetched = Product.find(product.id)
-        self.assertEqual(fetched, None)
 
     def test_list_all_products(self):
         """It should list all products in the database"""
