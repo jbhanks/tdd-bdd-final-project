@@ -5,17 +5,17 @@ Feature: The product store service back-end
 
 Background:
     Given the following products
-        |trebuchet |  A trebuchet to throw big rocks       | price   | available | categor
-        |siege tower | For the tallest walls. Assembly required.    | 999.99   |  False      | SIEGE_ENGINES
-        |ballista     | Goes through walls like a hot knife through butter!      | 999.99 
-        |sword   | Finest Damascus steel   | 99.99    | True      | SIDEARM       |
-        |mace | Simple yet effective | 9.99   | True      | SIDEARM |
-        | plate armor |Our finest | 99.99 | True | BODY_PROTECTION  |
-        | chain mail | For the fighter on the go |59.99 | True | BODY_PROTECTION    |
+        | trebuchet |  A trebuchet to throw big rocks       | 999.99   | True | SIEGE_ENGINES
+        | siege tower | For the tallest walls. Assembly required.    | 999.99   |  False      | SIEGE_ENGINES
+        | ballista     | Goes through walls like a hot knife through butter!      | 999.99 
+        | sword   | Finest Damascus steel   | 99.99    | True      | SIDEARM       |
+        | mace | Simple yet effective | 9.99   | True      | SIDEARM |
+        | plate armor | Our finest | 99.99 | True | BODY_PROTECTION  |
+        | chain mail | For the fighter who likes to stay limber |59.99 | True | BODY_PROTECTION    |
         | pitch | Just boil and pour | 2.99 | True | FLAMMABLES  |
-        | Greek fire | Only with written permission from the Basileus | 19.99 |  FLAMMABLE
+        | Greek fire | Only with written permission from the Basileus | 19.99 |  FLAMMABLES
         | brimstone | Buy with our pitch |  5.99 | True | FLAMMABLES |
-        | royal banner | Reprazent for your Basileus | 10.99 | True | SWAG     |
+        | Imperial banner | Reprazent for your Basileus | 10.99 | True | SWAG     |
         | riding boots| Like the ones the steppe archers use | 2.99 | False |  SWAG  |
 
 Scenario: The server is running
