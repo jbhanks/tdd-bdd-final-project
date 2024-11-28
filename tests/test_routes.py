@@ -213,7 +213,6 @@ class TestProductRoutes(TestCase):
         print("new_count", new_count)
         self.assertEqual(new_count, product_count - 1)
 
-
     ######################################################################
     # Utility functions
     ######################################################################

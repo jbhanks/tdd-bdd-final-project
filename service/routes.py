@@ -136,9 +136,7 @@ def create_products():
 def list_products():
     """Returns a list of Products"""
     app.logger.info("Request to list Products...")
-
     products = Product.all()
-
     results = [product.serialize() for product in products]
     app.logger.info("[%s] Products returned", len(results))
     return results, status.HTTP_200_OK
@@ -147,9 +145,7 @@ def list_products():
 # R E A D   A   P R O D U C T
 ######################################################################
 
-#
-# PLACE YOUR CODE HERE TO READ A PRODUCT
-#
+
 @app.route("/products/<int:product_id>", methods=["GET"])
 def get_products(product_id):
     """Gets a single product by id"""
@@ -159,13 +155,12 @@ def get_products(product_id):
         abort(status.HTTP_404_NOT_FOUND, f"Product with id {product_id}' was not found.")
     app.logger.info("Returning product: %s", product.name)
     return product.serialize(), status.HTTP_200_OK
+
 ######################################################################
 # U P D A T E   A   P R O D U C T
 ######################################################################
 
-######################################################################
-# UPDATE AN EXISTING PRODUCT
-######################################################################
+
 @app.route("/products/<int:product_id>", methods=["PUT"])
 def update_products(product_id):
     """
@@ -185,6 +180,8 @@ def update_products(product_id):
 ######################################################################
 # DELETE A PRODUCT
 ######################################################################
+
+
 @app.route("/products/<int:product_id>", methods=["DELETE"])
 def delete_products(product_id):
     """
