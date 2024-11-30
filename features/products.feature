@@ -85,3 +85,67 @@ Scenario: Update a Product
     And I should see "sword" in the "Name" field
     And I should see "129.99" in the "Price" field
     And I should not see "99.99" in the "Price" field
+
+
+Scenario: Delete a Product
+    When I visit the "Home Page"
+    And I set the "Name" to "sword"
+    And I press the "Search" button
+    Then I should see the message "Success"
+    And I should see "Finest Damascus steel" in the "Description" field
+    When I press the "Clear" button
+    And I press the "Search" button
+    And I paste the "Id" field
+    And I press the "Delete" button
+   Then I should see the message "Product has been Deleted!"
+    When I press the "Clear" button
+    And I press the "Search" button
+    Then I should see the message "Success"
+    And I should not see "Sword" in the results
+
+
+Scenario: List all products
+    When I visit the "Home Page"
+    And I press the "Clear" button
+    And I press the "Search" button
+    Then I should see the message "Success"
+    And I should see "Sword" in the results
+    And I should see "Greek fire" in the results
+    And I should see "trebuchet" in the results
+    And I should see "ballista" in the results
+
+Scenario: Search by category
+    When I visit the "Home Page"
+    And I set the "Description" to "SWAG"
+    And I press the "Search" button
+    Then I should see the message "Success"
+    And I should see "Imperial banner" in the results
+    And I should see "riding boots" in the results
+    And I should not see "Greek fire" in the results
+
+Scenario: Search by available
+    When I visit the "Home Page"
+    And I select "True" in the "Available" dropdown
+    And I press the "Search" button
+    Then I should see the message "Success"
+    And I should see "Imperial banner" in the results
+    And I should see "riding boots" in the results
+    And I should see "Sword" in the results
+    And I should see "Greek fire" in the results
+    And I should see "trebuchet" in the results
+    And I should see "ballista" in the results
+    And I should see "sword" in the results
+    And I should see "chainmail" in the results
+    And I should see "plate armor" in the results
+    And I should see "mace" in the results
+    And I should see "pitch" in the results
+    And I should see "brimstone" in the results
+    And I should not see "siege tower" in the results
+
+Scenario: Search by name
+    When I visit the "Home Page"
+    And I set the "Name" to "mace"
+    And I press the "Search" button
+    Then I should see the message "Success"
+    And I should see "mace" in the "Name" field
+    And I should see "Simple yet effective" in the "Description" field
