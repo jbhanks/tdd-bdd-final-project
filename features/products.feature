@@ -5,15 +5,16 @@ Feature: The product store service back-end
 
 Background:
     Given the following products
-        | trebuchet |  A trebuchet to throw big rocks       | 999.99   | True | SIEGE_ENGINES
-        | siege tower | For the tallest walls. Assembly required.    | 999.99   |  False      | SIEGE_ENGINES
-        | ballista     | Goes through walls like a hot knife through butter!      | 999.99 
+        | name       | description     | price   | available | category   |
+        | trebuchet |  A trebuchet to throw big rocks       | 999.99   | True | SIEGE_ENGINES |
+        | siege tower | For the tallest walls. Assembly required.    | 999.99   |  False      | SIEGE_ENGINES |
+        | ballista     | Goes through walls like a hot knife through butter! | 999.99 | True | SIEGE_ENGINES |
         | sword   | Finest Damascus steel   | 99.99    | True      | SIDEARM       |
         | mace | Simple yet effective | 9.99   | True      | SIDEARM |
         | plate armor | Our finest | 99.99 | True | BODY_PROTECTION  |
         | chain mail | For the fighter who likes to stay limber |59.99 | True | BODY_PROTECTION    |
         | pitch | Just boil and pour | 2.99 | True | FLAMMABLES  |
-        | Greek fire | Only with written permission from the Basileus | 19.99 |  FLAMMABLES
+        | Greek fire | Only with written permission from the Basileus | 19.99 | True |  FLAMMABLES
         | brimstone | Buy with our pitch |  5.99 | True | FLAMMABLES |
         | Imperial banner | Reprazent for your Basileus | 10.99 | True | SWAG     |
         | riding boots| Like the ones the steppe archers use | 2.99 | False |  SWAG  |
@@ -29,7 +30,7 @@ Scenario: Create a Product
     And I set the "Description" to "Damascus steel"
     And I select "True" in the "Available" dropdown
     And I select "Sidearms" in the "Category" dropdown
-    And I set the "Price" to "99.99"
+    And I set the "price" to "99.99"
     And I press the "Create" button
     Then I should see the message "Success"
     When I copy the "Id" field

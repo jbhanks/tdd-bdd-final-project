@@ -76,21 +76,18 @@ def create_products():
     """
     app.logger.info("Request to Create a Product...")
     check_content_type("application/json")
-
     data = request.get_json()
     app.logger.info("Processing: %s", data)
     product = Product()
     product.deserialize(data)
     product.create()
     app.logger.info("Product with new id [%s] saved!", product.id)
-
     message = product.serialize()
-
     #
     # Uncomment this line of code once you implement READ A PRODUCT
     #
-    # location_url = url_for("get_products", product_id=product.id, _external=True)
-    location_url = "/"  # delete once READ is implemented
+    location_url = url_for("get_products", product_id=product.id, _external=True)
+    # location_url = "/"  # delete once READ is implemented
     return jsonify(message), status.HTTP_201_CREATED, {"Location": location_url}
 
 
@@ -218,4 +215,3 @@ def list_products():
     results = [product.serialize() for product in products]
     app.logger.info("[%s] Products returned", len(results))
     return results, status.HTTP_200_OK
-
