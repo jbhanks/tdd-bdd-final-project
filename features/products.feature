@@ -29,7 +29,7 @@ Scenario: Create a Product
     And I set the "Name" to "sword"
     And I set the "Description" to "Finest Damascus steel"
     And I select "True" in the "Available" dropdown
-    And I select "SIDEARM" in the "Category" dropdown
+    And I select "Sidearm" in the "Category" dropdown
     And I set the "price" to "99.99"
     And I press the "Create" button
     Then I should see the message "Success"
@@ -44,7 +44,7 @@ Scenario: Create a Product
     And I should see "sword" in the "Name" field
     And I should see "Finest Damascus steel" in the "Description" field
     And I should see "True" in the "Available" dropdown
-    And I should see "SIDEARM" in the "Category" dropdown
+    And I should see "Sidearm" in the "Category" dropdown
     And I should see "99.99" in the "Price" field
 
 Scenario: Read a Product
@@ -60,7 +60,7 @@ Scenario: Read a Product
     And I should see "sword" in the "Name" field
     And I should see "Finest Damascus steel" in the "Description" field
     And I should see "True" in the "Available" dropdown
-    And I should see "SIDEARM" in the "Category" dropdown
+    And I should see "Sidearm" in the "Category" dropdown
     And I should see "99.99" in the "Price" field 
 
 Scenario: Update a Product
@@ -119,7 +119,7 @@ Scenario: List all products
 Scenario: Search by Category
     When I visit the "Home Page"
     And I press the "Clear" button
-    And I select "SWAG" in the "Category" dropdown
+    And I select "Swag" in the "Category" dropdown
     And I press the "Search" button
     Then I should see the message "Success"
     And I should see "Imperial banner" in the results
