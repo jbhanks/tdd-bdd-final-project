@@ -6,17 +6,17 @@ Feature: The product store service back-end
 Background:
     Given the following products
         | name       | description     | price   | available | category   |
-        | trebuchet |  A trebuchet to throw big rocks       | 999.99   | True | SIEGE_ENGINES |
-        | siege tower | For the tallest walls. Assembly required.    | 999.99   |  False      | SIEGE_ENGINES |
-        | ballista     | Goes through walls like a hot knife through butter! | 999.99 | True | SIEGE_ENGINES |
+        | trebuchet |  A trebuchet to throw big rocks       | 999.99   | True | SIEGE_ENGINE |
+        | siege tower | For the tallest walls. Assembly required.    | 999.99   |  False      | SIEGE_ENGINE |
+        | ballista     | Goes through walls like a hot knife through butter! | 999.99 | True | SIEGE_ENGINE |
         | sword   | Finest Damascus steel   | 99.99    | True      | SIDEARM       |
         | mace | Simple yet effective | 9.99   | True      | SIDEARM |
         | plate armor | Our finest | 99.99 | True | BODY_PROTECTION  |
         | chain mail | For the fighter who likes to stay limber |59.99 | True | BODY_PROTECTION    |
         | pitch | Just boil and pour | 2.99 | True | FLAMMABLES  |
-        | Greek fire | Only with written permission from the Basileus | 19.99 | True |  FLAMMABLES
+        | Greek fire | Only with written permission from the Basileus | 19.99 | True |  FLAMMABLES |
         | brimstone | Buy with our pitch |  5.99 | True | FLAMMABLES |
-        | Imperial banner | Reprazent for your Basileus | 10.99 | True | SWAG     |
+        | Imperial banner | Reprazent for your Basileus | 10.99 | True | SWAG  |
         | riding boots| Like the ones the steppe archers use | 2.99 | False |  SWAG  |
 
 Scenario: The server is running
@@ -27,7 +27,7 @@ Scenario: The server is running
 Scenario: Create a Product
     When I visit the "Home Page"
     And I set the "Name" to "sword"
-    And I set the "Description" to "Damascus steel"
+    And I set the "Description" to "Finest Damascus steel"
     And I select "True" in the "Available" dropdown
     And I select "Sidearms" in the "Category" dropdown
     And I set the "price" to "99.99"
@@ -94,8 +94,8 @@ Scenario: Delete a Product
     And I press the "Search" button
     Then I should see the message "Success"
     And I should see "Finest Damascus steel" in the "Description" field
-    When I press the "Clear" button
-    And I press the "Search" button
+    When I copy the "Id" field
+    And I press the "Clear" button
     And I paste the "Id" field
     And I press the "Delete" button
    Then I should see the message "Product has been Deleted!"
@@ -126,6 +126,7 @@ Scenario: Search by category
 
 Scenario: Search by available
     When I visit the "Home Page"
+    And I press the "Clear" button
     And I select "True" in the "Available" dropdown
     And I press the "Search" button
     Then I should see the message "Success"
