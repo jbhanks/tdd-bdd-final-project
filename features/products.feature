@@ -9,15 +9,15 @@ Background:
         | trebuchet |  A trebuchet to throw big rocks       | 999.99   | True | SIEGE_ENGINE |
         | siege tower | For the tallest walls. Assembly required.    | 999.99   |  False      | SIEGE_ENGINE |
         | ballista     | Goes through walls like a hot knife through butter! | 999.99 | True | SIEGE_ENGINE |
-        | sword   | Finest Damascus steel   | 99.99    | True      | SIDEARM       |
+        | sword   | Finest Damascus steel   | 99.99 | True | SIDEARM |
         | mace | Simple yet effective | 9.99   | True      | SIDEARM |
         | plate armor | Our finest | 99.99 | True | BODY_PROTECTION  |
-        | chain mail | For the fighter who likes to stay limber |59.99 | True | BODY_PROTECTION    |
+        | chain mail | For the fighter who likes to stay limber |59.99 | True | BODY_PROTECTION  |
         | pitch | Just boil and pour | 2.99 | True | FLAMMABLES  |
         | Greek fire | Only with written permission from the Basileus | 19.99 | True |  FLAMMABLES |
         | brimstone | Buy with our pitch |  5.99 | True | FLAMMABLES |
-        | Imperial banner | Reprazent for your Basileus | 10.99 | True | SWAG  |
-        | riding boots | Like the ones the steppe archers use | 2.99 | False |  SWAG  |
+        | Imperial banner | Reprazent for your Basileus | 10.99 | True | SWAG |
+        | riding boots | Like the ones the steppe archers use | 2.99 | False | SWAG |
 
 Scenario: The server is running
     When I visit the "Home Page"
@@ -29,7 +29,7 @@ Scenario: Create a Product
     And I set the "Name" to "sword"
     And I set the "Description" to "Finest Damascus steel"
     And I select "True" in the "Available" dropdown
-    And I select "Sidearms" in the "Category" dropdown
+    And I select "SIDEARM" in the "Category" dropdown
     And I set the "price" to "99.99"
     And I press the "Create" button
     Then I should see the message "Success"
@@ -44,7 +44,7 @@ Scenario: Create a Product
     And I should see "sword" in the "Name" field
     And I should see "Finest Damascus steel" in the "Description" field
     And I should see "True" in the "Available" dropdown
-    And I should see "Sidearms" in the "Category" dropdown
+    And I should see "SIDEARM" in the "Category" dropdown
     And I should see "99.99" in the "Price" field
 
 Scenario: Read a Product
@@ -60,7 +60,7 @@ Scenario: Read a Product
     And I should see "sword" in the "Name" field
     And I should see "Finest Damascus steel" in the "Description" field
     And I should see "True" in the "Available" dropdown
-    And I should see "Sidearms" in the "Category" dropdown
+    And I should see "SIDEARM" in the "Category" dropdown
     And I should see "99.99" in the "Price" field 
 
 Scenario: Update a Product
@@ -77,6 +77,7 @@ Scenario: Update a Product
     And I paste the "Id" field
     And I press the "Retrieve" button
     Then I should see the message "Success"
+    And I should see "sword" in the "Name" field 
     And I should see "129.99" in the "Price" field 
     When I press the "Clear" button
     And I press the "Search" button
@@ -102,7 +103,7 @@ Scenario: Delete a Product
     When I press the "Clear" button
     And I press the "Search" button
     Then I should see the message "Success"
-    And I should not see "Sword" in the results
+    And I should not see "sword" in the results
 
 
 Scenario: List all products
@@ -110,19 +111,22 @@ Scenario: List all products
     And I press the "Clear" button
     And I press the "Search" button
     Then I should see the message "Success"
-    And I should see "Sword" in the results
+    And I should see "sword" in the results
     And I should see "Greek fire" in the results
     And I should see "trebuchet" in the results
     And I should see "ballista" in the results
 
 Scenario: Search by Category
     When I visit the "Home Page"
-    And I set the "Description" to "SWAG"
+    And I press the "Clear" button
+    And I select "SWAG" in the "Category" dropdown
     And I press the "Search" button
     Then I should see the message "Success"
     And I should see "Imperial banner" in the results
     And I should see "riding boots" in the results
     And I should not see "Greek fire" in the results
+    And I should not see "sword" in the results
+    And I should not see "trebuchet" in the results
 
 Scenario: Search by Available
     When I visit the "Home Page"
@@ -131,12 +135,12 @@ Scenario: Search by Available
     And I press the "Search" button
     Then I should see the message "Success"
     And I should see "Imperial banner" in the results
-    And I should see "Sword" in the results
+    And I should see "sword" in the results
     And I should see "Greek fire" in the results
     And I should see "trebuchet" in the results
     And I should see "ballista" in the results
     And I should see "sword" in the results
-    And I should see "chainmail" in the results
+    And I should see "chain mail" in the results
     And I should see "plate armor" in the results
     And I should see "mace" in the results
     And I should see "pitch" in the results
