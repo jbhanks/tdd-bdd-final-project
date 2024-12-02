@@ -5,7 +5,7 @@ Feature: The product store service back-end
 
 Background:
     Given the following products
-        | name       | description     | price   | available | category   |
+        | Name       | Description     | Price   | Available | Category   |
         | trebuchet |  A trebuchet to throw big rocks       | 999.99   | True | SIEGE_ENGINE |
         | siege tower | For the tallest walls. Assembly required.    | 999.99   |  False      | SIEGE_ENGINE |
         | ballista     | Goes through walls like a hot knife through butter! | 999.99 | True | SIEGE_ENGINE |
@@ -17,7 +17,7 @@ Background:
         | Greek fire | Only with written permission from the Basileus | 19.99 | True |  FLAMMABLES |
         | brimstone | Buy with our pitch |  5.99 | True | FLAMMABLES |
         | Imperial banner | Reprazent for your Basileus | 10.99 | True | SWAG  |
-        | riding boots| Like the ones the steppe archers use | 2.99 | False |  SWAG  |
+        | riding boots | Like the ones the steppe archers use | 2.99 | False |  SWAG  |
 
 Scenario: The server is running
     When I visit the "Home Page"
@@ -69,7 +69,7 @@ Scenario: Update a Product
     And I press the "Search" button
     Then I should see the message "Success"
     And I should see "99.99" in the "Price" field
-    When I change the "Price" to "129.99"
+    When I change "Price" to "129.99"
     And I press the "Update" button
     Then I should see the message "Success"
     When I copy the "Id" field
@@ -115,7 +115,7 @@ Scenario: List all products
     And I should see "trebuchet" in the results
     And I should see "ballista" in the results
 
-Scenario: Search by category
+Scenario: Search by Category
     When I visit the "Home Page"
     And I set the "Description" to "SWAG"
     And I press the "Search" button
@@ -124,14 +124,13 @@ Scenario: Search by category
     And I should see "riding boots" in the results
     And I should not see "Greek fire" in the results
 
-Scenario: Search by available
+Scenario: Search by Available
     When I visit the "Home Page"
     And I press the "Clear" button
     And I select "True" in the "Available" dropdown
     And I press the "Search" button
     Then I should see the message "Success"
     And I should see "Imperial banner" in the results
-    And I should see "riding boots" in the results
     And I should see "Sword" in the results
     And I should see "Greek fire" in the results
     And I should see "trebuchet" in the results
@@ -142,9 +141,10 @@ Scenario: Search by available
     And I should see "mace" in the results
     And I should see "pitch" in the results
     And I should see "brimstone" in the results
+    And I should not see "riding boots" in the results
     And I should not see "siege tower" in the results
 
-Scenario: Search by name
+Scenario: Search by Name
     When I visit the "Home Page"
     And I set the "Name" to "mace"
     And I press the "Search" button

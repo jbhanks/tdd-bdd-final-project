@@ -47,13 +47,11 @@ def step_impl(context):
     #
     for row in context.table:
         payload = {
-            "name": row['name'],
-            "description": row['description'],
-            "price": row['price'],
-            "available": row['available'] in ['True', 'true', '1'],
-            "category": row['category']
+            "name": row['Name'],
+            "description": row['Description'],
+            "price": row['Price'],
+            "available": row['Available'] in ['True', 'true', '1'],
+            "category": row['Category']
         }
         context.resp = requests.post(rest_endpoint, json=payload)
-        print("rest_endpoint is:", rest_endpoint)
-        print("context.resp.status_code is", context.resp.status_code)
         assert context.resp.status_code == HTTP_201_CREATED
