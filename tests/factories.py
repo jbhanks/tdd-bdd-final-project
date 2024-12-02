@@ -42,7 +42,7 @@ class ProductFactory(factory.Factory):
             'pitch',
             'Greek fire',
             'brimstone',
-            'imperial banner',
+            'Imperial banner',
             'riding boots'
             ])
     description = factory.Faker("text")
