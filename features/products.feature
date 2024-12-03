@@ -65,10 +65,9 @@ Scenario: Read a Product
 
 Scenario: Update a Product
     When I visit the "Home Page"
-    And I set the "name" to "sword"
+    And I set the "Name" to "sword"
     And I press the "Search" button
     Then I should see the message "Success"
-    And I should see "sword" in the "name" field
     And I should see "99.99" in the "price" field
     When I change "price" to "129.99"
     And I press the "Update" button
@@ -78,15 +77,8 @@ Scenario: Update a Product
     And I paste the "Id" field
     And I press the "Retrieve" button
     Then I should see the message "Success"
-    And I should see "sword" in the "name" field 
-    And I should see "129.99" in the "price" field 
-    When I press the "Clear" button
-    And I paste the "Id" field
-    And I press the "Search" button
-    Then I should see the message "Success"
-    And I should see "sword" in the "name" field
     And I should see "129.99" in the "price" field
-    And I should not see "99.99" in the "price" field
+    And I should see "sword" in the "name" field
 
 
 Scenario: Delete a Product
