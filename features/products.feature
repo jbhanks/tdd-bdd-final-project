@@ -5,7 +5,7 @@ Feature: The product store service back-end
 
 Background:
     Given the following products
-        | Name       | Description     | Price   | Available | Category   |
+        | name       | description     | price   | available | category   |
         | trebuchet |  A trebuchet to throw big rocks       | 999.99   | True | SIEGE_ENGINE |
         | siege tower | For the tallest walls. Assembly required.    | 999.99   |  False      | SIEGE_ENGINE |
         | ballista     | Goes through walls like a hot knife through butter! | 999.99 | True | SIEGE_ENGINE |
@@ -26,30 +26,30 @@ Scenario: The server is running
 
 Scenario: Create a Product
     When I visit the "Home Page"
-    And I set the "Name" to "sword"
-    And I set the "Description" to "Finest Damascus steel"
-    And I select "True" in the "Available" dropdown
-    And I select "Sidearm" in the "Category" dropdown
+    And I set the "name" to "sword"
+    And I set the "description" to "Finest Damascus steel"
+    And I select "True" in the "available" dropdown
+    And I select "Sidearm" in the "category" dropdown
     And I set the "price" to "99.99"
     And I press the "Create" button
     Then I should see the message "Success"
     When I copy the "Id" field
     And I press the "Clear" button
     Then the "Id" field should be empty
-    And the "Name" field should be empty
-    And the "Description" field should be empty
+    And the "name" field should be empty
+    And the "description" field should be empty
     When I paste the "Id" field
     And I press the "Retrieve" button
     Then I should see the message "Success"
-    And I should see "sword" in the "Name" field
-    And I should see "Finest Damascus steel" in the "Description" field
-    And I should see "True" in the "Available" dropdown
-    And I should see "Sidearm" in the "Category" dropdown
-    And I should see "99.99" in the "Price" field
+    And I should see "sword" in the "name" field
+    And I should see "Finest Damascus steel" in the "description" field
+    And I should see "True" in the "available" dropdown
+    And I should see "Sidearm" in the "category" dropdown
+    And I should see "99.99" in the "price" field
 
 Scenario: Read a Product
     When I visit the "Home Page"
-    And I set the "Name" to "sword"
+    And I set the "name" to "sword"
     And I press the "Search" button
     Then I should see the message "Success"
     When I copy the "Id" field
@@ -57,20 +57,20 @@ Scenario: Read a Product
     And I paste the "Id" field
     And I press the "Retrieve" button
     Then I should see the message "Success"
-    And I should see "sword" in the "Name" field
-    And I should see "Finest Damascus steel" in the "Description" field
-    And I should see "True" in the "Available" dropdown
-    And I should see "Sidearm" in the "Category" dropdown
-    And I should see "99.99" in the "Price" field 
+    And I should see "sword" in the "name" field
+    And I should see "Finest Damascus steel" in the "description" field
+    And I should see "True" in the "available" dropdown
+    And I should see "Sidearm" in the "category" dropdown
+    And I should see "99.99" in the "price" field 
 
 Scenario: Update a Product
     When I visit the "Home Page"
-    And I set the "Name" to "sword"
+    And I set the "name" to "sword"
     And I press the "Search" button
     Then I should see the message "Success"
-    And I should see "sword" in the "Name" field
-    And I should see "99.99" in the "Price" field
-    When I change "Price" to "129.99"
+    And I should see "sword" in the "name" field
+    And I should see "99.99" in the "price" field
+    When I change "price" to "129.99"
     And I press the "Update" button
     Then I should see the message "Success"
     When I copy the "Id" field
@@ -78,24 +78,23 @@ Scenario: Update a Product
     And I paste the "Id" field
     And I press the "Retrieve" button
     Then I should see the message "Success"
-    And I should see "sword" in the "Name" field 
-    And I should see "129.99" in the "Price" field 
+    And I should see "sword" in the "name" field 
+    And I should see "129.99" in the "price" field 
     When I press the "Clear" button
-    And I press the "Search" button
     And I paste the "Id" field
     And I press the "Search" button
     Then I should see the message "Success"
-    And I should see "sword" in the "Name" field
-    And I should see "129.99" in the "Price" field
-    And I should not see "99.99" in the "Price" field
+    And I should see "sword" in the "name" field
+    And I should see "129.99" in the "price" field
+    And I should not see "99.99" in the "price" field
 
 
 Scenario: Delete a Product
     When I visit the "Home Page"
-    And I set the "Name" to "sword"
+    And I set the "name" to "sword"
     And I press the "Search" button
     Then I should see the message "Success"
-    And I should see "Finest Damascus steel" in the "Description" field
+    And I should see "Finest Damascus steel" in the "description" field
     When I copy the "Id" field
     And I press the "Clear" button
     And I paste the "Id" field
@@ -117,10 +116,10 @@ Scenario: List all products
     And I should see "trebuchet" in the results
     And I should see "ballista" in the results
 
-Scenario: Search by Category
+Scenario: Search by category
     When I visit the "Home Page"
     And I press the "Clear" button
-    And I select "Swag" in the "Category" dropdown
+    And I select "Swag" in the "category" dropdown
     And I press the "Search" button
     Then I should see the message "Success"
     And I should see "Imperial banner" in the results
@@ -129,10 +128,10 @@ Scenario: Search by Category
     And I should not see "sword" in the results
     And I should not see "trebuchet" in the results
 
-Scenario: Search by Available
+Scenario: Search by available
     When I visit the "Home Page"
     And I press the "Clear" button
-    And I select "True" in the "Available" dropdown
+    And I select "True" in the "available" dropdown
     And I press the "Search" button
     Then I should see the message "Success"
     And I should see "Imperial banner" in the results
@@ -149,10 +148,10 @@ Scenario: Search by Available
     And I should not see "riding boots" in the results
     And I should not see "siege tower" in the results
 
-Scenario: Search by Name
+Scenario: Search by name
     When I visit the "Home Page"
-    And I set the "Name" to "mace"
+    And I set the "name" to "mace"
     And I press the "Search" button
     Then I should see the message "Success"
-    And I should see "mace" in the "Name" field
-    And I should see "Simple yet effective" in the "Description" field
+    And I should see "mace" in the "name" field
+    And I should see "Simple yet effective" in the "description" field
