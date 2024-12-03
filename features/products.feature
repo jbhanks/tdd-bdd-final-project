@@ -68,6 +68,7 @@ Scenario: Update a Product
     And I set the "Name" to "sword"
     And I press the "Search" button
     Then I should see the message "Success"
+    And I should see "sword" in the "Name" field
     And I should see "99.99" in the "Price" field
     When I change "Price" to "129.99"
     And I press the "Update" button

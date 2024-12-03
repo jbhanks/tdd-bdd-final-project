@@ -126,24 +126,20 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(fetched.available, product.available)
         self.assertEqual(fetched.category, product.category)
 
-    def test_update_a_product(self):
-        """It should Update a Product"""
-        product = ProductFactory()
-        product.id = None
-        product.create()
-        self.assertIsNotNone(product.id)
-        # Change it an save it
-        product.description = "testing"
-        original_id = product.id
-        product.update()
-        self.assertEqual(product.id, original_id)
-        self.assertEqual(product.description, "testing")
-        # Fetch it back and make sure the id hasn't changed
-        # but the data did change
-        products = Product.all()
-        self.assertEqual(len(products), 1)
-        self.assertEqual(products[0].id, original_id)
-        self.assertEqual(products[0].description, "testing")
+    def test_update_product(self):
+        """It should Update an existing Product"""
+        # create a product to update
+        test_product = ProductFactory()
+        response = self.client.post(BASE_URL, json=test_product.serialize())
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+        # update the product
+        new_product = response.get_json()
+        new_product["description"] = "unknown"
+        response = self.client.put(f"{BASE_URL}/{new_product['id']}", json=new_product)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        updated_product = response.get_json()
+        self.assertEqual(updated_product["description"], "unknown")
 
     # def test_delete_a_product(self):
     #     """It should delete a product from the database"""
